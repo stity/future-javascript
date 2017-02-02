@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>reveal.js</title>
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/blood.css">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <link rel="stylesheet" href="plugin/toc-progress/toc-progress.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <!-- title -->
+                <section>
+                    <section data-state="no-toc-progress">
+                        <h1 class="no-toc-progress">JavaScript</h1>
+                        <h3>Language du futur ?</h3>
+                        <small>Par Valentin Demeusy</small>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Qu'est ce que JavaScript ?</h2>
+                    </section>
+                    <section>
+                        <h3>Présentation</h3>
+                        <ul>
+                            <li>Langage interprété à typage faible et dynamique</li>
+                            <li>Connu comme le langage des pages Web</li>
+                            <li>Dernière version stable : ECMAScript2016, 17 Juin 2016</li>
+                            <li>Dernière version : ECMAScript2017</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Les moteurs</h3>
+                        <ul>
+                            <li>Navigateurs :
+                                <ul>
+                                    <li>Chrome (V8)</li>
+                                    <li>Firefox (Spider Monkey)</li>
+                                    <li>Edge (Chakra)</li>
+                                    <li>Safari (JavaScriptCore)</li>
+                                </ul>
+                            </li>
+                            <li><a href="https://nodejs.org/en/">Node.js (V8)</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Un langage pour tout faire</h3>
+                        <ul>
+                            <li>Frontend via les navigateurs</li>
+                            <li>Serveurs via Node.js</li>
+                            <li>Applications bureau via <a href="http://electron.atom.io/">Electron</a></li>
+                            <li>Applications mobiles via <a href="https://cordova.apache.org/">Cordova</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Développement actif</h3>
+                        <ul>
+                            <li>Utilisé par 94% des sites Web (<a href="https://w3techs.com/technologies/details/cp-javascript/all/all">source</a>)</li>
+                            <li>Langage n°1 sur GitHub depuis 2013 (<a href="https://github.com/blog/2047-language-trends-on-github">source</a>)</li>
+                            <li>390 000 packages sur NPM, 525 packages/jour (<a href="http://www.modulecounts.com/">source</a>)</li>
+                            <li>Le plus populaire et le plus discuté sur StackOverflow (<a href="http://stackoverflow.com/research/developer-survey-2016#technology">source</a>)</li>
+                        </ul>
+                    </section>
+                </section>
+
+
+
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // More info https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                history: true,
+
+                // More info https://github.com/hakimel/reveal.js#dependencies
+                dependencies: [
+                    { src: 'plugin/markdown/marked.js' },
+                    { src: 'plugin/markdown/markdown.js' },
+                    { src: 'plugin/notes/notes.js', async: true },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/toc-progress/toc-progress.js',
+                     async: true,
+                     callback: function()
+                     {
+                         toc_progress.initialize('reduce', 'rgba(34,34,34,0.9)');
+                         toc_progress.create();
+                     }
+                    }
+                ]
+            });
+        </script>
+    </body>
+</html>
