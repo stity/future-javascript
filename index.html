@@ -37,6 +37,21 @@
 
                 <section>
                     <section>
+                        <h2>Objectifs</h2>
+                    </section>
+                    <section>
+                        <h3 class="no-toc-progress">Objectif</h3>
+                        <ul>
+                            <li>Présentation JavaScript</li>
+                            <li>Challenges à relever</li>
+                            <li>Solutions</li>
+                        </ul>
+                    </section>
+                </section>
+
+
+                <section>
+                    <section>
                         <h2>Qu'est ce que JavaScript ?</h2>
                     </section>
                     <section>
@@ -122,6 +137,19 @@
                             asm.js -> sous ensemble de JavaScript
                         </aside>
                     </section>
+                    <section>
+                        <h3>Exemple TypeScript</h3>
+                        <pre><code>class Greeter {
+    constructor(public greeting: string) { }
+    greet() {
+        return "<h1>" + this.greeting + "</h1>";
+    }
+};
+
+var greeter = new Greeter("Hello, world!");
+
+document.body.innerHTML = greeter.greet();</code></pre>
+                    </section>
                 </section>
                 <section>
                     <section>
@@ -170,6 +198,63 @@
   var res4 = await request.getAsync(url4);
   return "whew all done";
 }</code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Parallélisme</h2>
+                    </section>
+                    <section>
+                        <h3>Web Worker</h3>
+                        <ul>
+                            <li>Programme s'éxécutant en parallèle dans un environnement indépendant</li>
+                            <li>Communication par message entre les workers et le main</li>
+                            <li>Données envoyées par copies ou "transférées"</li>
+                        </ul>
+
+                    </section>
+                    <section>
+                        <h3>GPU</h3>
+                        <ul>
+                            <li>Utilisation du GPU via WebGL</li>
+                            <li>Les shaders traitent les données en parallèle</li>
+                            <li><a href="https://turbo.github.io/">Turbo.js</a></li>
+                        </ul>
+
+                    </section>
+                    <section>
+                        <h3>Shared Array Buffer</h3>
+                        <pre><code>    // main.js
+
+    const worker = new Worker('worker.js');
+
+    // To be shared
+    const sharedBuffer = new SharedArrayBuffer( // (A)
+        10 * Int32Array.BYTES_PER_ELEMENT); // 10 elements
+
+    // Share sharedBuffer with the worker
+    worker.postMessage({sharedBuffer}); // clone
+
+    // Local only
+    const sharedArray = new Int32Array(sharedBuffer); // (B)</code></pre>
+                        <aside class="notes">Pour éviter les problèmes d'accès concurrents en lecture ou en écriture => atomics</aside>
+                    </section>
+                    <section>
+                        <h3>Atomics</h3>
+                        <pre><code>// Initialization before sharing the Array
+    Atomics.store(sharedArray, 0, 1);
+
+    // main.js
+    Atomics.store(sharedArray, 0, 2);
+
+    // worker.js
+    while (Atomics.load(sharedArray, 0) === 1) ;
+    console.log(Atomics.load(sharedArray, 0)); // 2</code></pre>
+                    </section>
+                    <section>
+                        <h3>Performances</h3>
+                        D'après l'article <a href="">ES proposal: Shared memory and atomics</a>, les gains de performances sont linéaires avec le nombre de web worker jusqu'à 4 workers avec l'algorithme testé. Au delà les performances s'améliorent plus modestement.
                     </section>
                 </section>
 
