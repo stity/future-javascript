@@ -258,6 +258,69 @@ document.body.innerHTML = greeter.greet();</code></pre>
                     </section>
                 </section>
 
+                <section>
+                    <section>
+                        <h2>Optimisation</h2>
+                    </section>
+                    <section>
+                        <h3>asm.js</h3>
+                        <ul>
+                            <li>Sous ensemble très restraint de JavaScript, pas d'objets</li>
+                            <li>Evite le typage dynamique</li>
+                            <li>Permet de réaliser des optimisations de bas niveau</li>
+                            <li>Ahead-Of-Time (AOT) VS Just-In-Time (JIT)</li>
+                            <li>Compilation de C++ en asm.js</li>
+                        </ul>
+                        <aside class="notes">Just in time basé sur l'heuristique, AOT proche de la compilation de C++</aside>
+                    </section>
+                    <section>
+                        <h3>asm.js Exemple</h3>
+                        <pre><code>function compiledCalculation() {
+    var x = f()|0;  // x is a 32-bit value
+    var y = g()|0;  // so is y
+    return (x+y)|0; // 32-bit addition, no type or overflow checks
+  }</code></pre>
+                    </section>
+                    <section>
+                        <h3>asm.js Benchmark</h3>
+                        <img src="benchmarkasm.png"/>
+                    </section>
+                    <section>
+                        <h3>WebAssembly</h3>
+                        <ul>
+                            <li>Format binaire d'asm.js</li>
+                            <li>Moins de temps de chargement</li>
+                            <li>Moins de temps de parsing</li>
+                            <li>Même espace sémantique que JavaScript, permet les appels entre JavaScript et WASM</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Performance</h3>
+                        <ul>
+                            <li>Parsing : jusqu'à 20 fois meilleur</li>
+                            <li>Chargement : 1,5-3 fois meilleur</li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Conclusion</h2>
+                    </section>
+                    <section>
+                        <h3 class="no-toc-progress">Conclusion</h3>
+                        <ul>
+                            <li>Omniprésence</li>
+                            <li>Evolution rapide</li>
+                        </ul>
+                        <aside class="notes"></aside>
+                    </section>
+                </section>
+                <section>
+                    <section data-state="no-toc-progress">
+                        <h2 class="no-toc-progress">Questions ?</h2>
+                    </section>
+                </section>
+
 
 
             </div>
