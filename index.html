@@ -82,6 +82,97 @@
                     </section>
                 </section>
 
+                <section>
+                    <section>
+                        <h2>Les reproches</h2>
+                    </section>
+                    <section>
+                        <h3 class="no-toc-progress">Les reproches</h3>
+                        <ul>
+                            <li>Pas de typage fort</li>
+                            <li>Callback Hell</li>
+                            <li>Pas de mémoire partagée</li>
+                            <li>Lenteur</li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Typage</h2>
+                    </section>
+                    <section>
+                        <h3>Absence de typage fort</h3>
+                        <ul>
+                            <li>Rend le débuggage difficile</li>
+                            <li>Autocomplétion difficile</li>
+                            <li>Exécution plus lente</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Alternatives</h3>
+                        <ul>
+                            <li><a href="http://www.dartlang.org/">Dart</a></li>
+                            <li><a href="http://www.typescriptlang.org/">TypeScript</a></li>
+                            <li><a href="http://asmjs.org/">asm.js</a></li>
+                            <p>Efficaces mais requierent un préprocesseur</p>
+                        </ul>
+                        <aside class="notes">
+                            Dart -> Google
+                            TypeScript -> OpenSource sur GitHub
+                            asm.js -> sous ensemble de JavaScript
+                        </aside>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Callback Hell</h2>
+                    </section>
+                    <section>
+                        <h3>Callback Hell</h3>
+                        <pre><code>function foo(finalCallback) {
+  request.get(url1, function(err1, res1) {
+    if (err1) { return finalCallback(err1); }
+    request.post(url2, function(err2, res2) {
+      if (err2) { return finalCallback(err2); }
+      request.put(url3, function(err3, res3) {
+        if (err3) { return finalCallback(err3); }
+        request.del(url4, function(err4, res4) {
+          // let's stop here
+          if (err4) { return finalCallback(err4); }
+          finalCallback(null, "whew all done");
+        })
+      })
+    })
+  })
+}</code></pre>
+                    </section>
+                    <section>
+                        <h3>Promises (ES6)</h3>
+                        <pre><code>function foo() {
+  return request.getAsync(url1)
+  .then(function(res1) {
+    return request.postAsync(url2);
+  }).then(function(res2) {
+    return request.putAsync(url3);
+  }).then(function(res3) {
+     return request.delAsync(url4);
+  }).then(function(res4) {
+     return "whew all done";
+  });
+}</code></pre>
+                    </section>
+                    <section>
+                        <h3>Async/Wait (ES7)</h3>
+                        <pre><code>async function foo() {
+  var res1 = await request.getAsync(url1);
+  var res2 = await request.getAsync(url2);
+  var res3 = await request.getAsync(url3);
+  var res4 = await request.getAsync(url4);
+  return "whew all done";
+}</code></pre>
+                    </section>
+                </section>
+
 
 
             </div>
