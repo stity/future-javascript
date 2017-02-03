@@ -44,7 +44,7 @@
                         <ul>
                             <li>Présentation JavaScript</li>
                             <li>Challenges à relever</li>
-                            <li>Solutions</li>
+                            <li>Solutions amenées par la communauté et les évolutions du langage</li>
                         </ul>
                     </section>
                 </section>
@@ -93,6 +93,19 @@
                             <li>Langage n°1 sur GitHub depuis 2013 (<a href="https://github.com/blog/2047-language-trends-on-github">source</a>)</li>
                             <li>390 000 packages sur NPM, 525 packages/jour (<a href="http://www.modulecounts.com/">source</a>)</li>
                             <li>Le plus populaire et le plus discuté sur StackOverflow (<a href="http://stackoverflow.com/research/developer-survey-2016#technology">source</a>)</li>
+                            <li>420Ko/page en moyenne en moyenne</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Compatibilité</h3>
+                        <img src="kangax.png"/>
+                    </section>
+                    <section>
+                        <h3>Polyfills</h3>
+                        <ul>
+                            <li>Pas de numéro de version</li>
+                            <li>Polyfills pour les "vieux" moteurs</li>
+                            <li><a href="https://babeljs.io/" >Babel</a> pour transpiler les nouvelles fonctionnalités</li>
                         </ul>
                     </section>
                 </section>
@@ -106,6 +119,12 @@
                         <ul>
                             <li>Pas de typage fort</li>
                             <li>Callback Hell</li>
+                            <li>Mauvaise lisibilité
+                                <ul>
+                                    <li>Callback Hell</li>
+                                    <li>Syntaxe étrange</li>
+                                </ul>
+                            </li>
                             <li>Pas de mémoire partagée</li>
                             <li>Lenteur</li>
                         </ul>
@@ -197,6 +216,46 @@ document.body.innerHTML = greeter.greet();</code></pre>
   var res3 = await request.getAsync(url3);
   var res4 = await request.getAsync(url4);
   return "whew all done";
+}</code></pre>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Syntaxe</h2>
+                    </section>
+                    <section>
+                        <h3>Classes</h3>
+                        <pre><code>function MyObjectA () {}
+MyObjectA.prototype = {
+  myMethod: function () {}
+};
+
+var obj = new MyObjectA();</code></pre>
+                    </section>
+                    <section>
+                        <h3 class="no-toc-progress">Classes</h3>
+                        <pre><code>class MyObjectC {
+  myMethod () {
+
+  }
+}
+var obj = new MyObjectC();</code></pre>
+                    </section>
+                    <section>
+                        <h3>Portées des variables</h3>
+                        <pre><code>function fn() {
+  let foo = "bar";
+  var foo2 = "bar";
+  if (true) {
+    let foo; // pas d'erreur, foo === undefined
+    var foo2; // foo2 est en réalité écrasé !
+    foo = "qux";
+    foo2 = "qux";
+    console.log(foo); // "qux"
+    console.log(foo2); // "qux"
+  }
+  console.log(foo);// "bar"
+  console.log(foo2); // "qux"
 }</code></pre>
                     </section>
                 </section>
@@ -318,6 +377,7 @@ document.body.innerHTML = greeter.greet();</code></pre>
                 <section>
                     <section data-state="no-toc-progress">
                         <h2 class="no-toc-progress">Questions ?</h2>
+                        Retrouvez cette présentation en ligne sur <a href="https://stity.github.io/future-javascript">stity.github.io/future-javascript</a>
                     </section>
                 </section>
 
