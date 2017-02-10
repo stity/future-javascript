@@ -159,7 +159,7 @@ toc_progress.create=function()
                         style_node.textContent=style_node.textContent+'.toc-progress-'+main_sections_index.toString()+'-'+secondary_sections_index.toString()+' #toc-progress-'+main_sections_index.toString()+'-'+secondary_sections_index.toString()+' {font-weight: bold;}\n';
                     };
                 }
-                else if (title_element==null)
+                else if (title_element==null || (title_element.hasAttribute('class') && title_element.getAttribute('class').indexOf('no-toc-progress') > -1))
                 {
                     var untitled_section_previous=secondary_section;
                     do {
@@ -172,9 +172,9 @@ toc_progress.create=function()
                     } while (untitled_section_previous!=null && (untitled_section_previous.nodeType!=Node.ELEMENT_NODE || !untitled_section_previous.hasAttribute('data-state')));
                     if (untitled_section_previous!=null) {
                         secondary_section.setAttribute('data-state',untitled_section_previous.getAttribute('data-state'));
-                    };
-                };
-            };
+                    }
+                }
+            }
         }
         else {
             var title_element=this.getElementsByTagNames('h1,h2,h3',main_section)[0];
