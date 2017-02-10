@@ -11,15 +11,20 @@
 
 /* Style for the TOC-Progress footer */
 
+.reveal.center {
+    width:80%;
+    margin-left: 20%;
+}
 #toc-progress-footer
 {
 	opacity: 1;
 	transition: opacity 800ms ease-in-out;
 	position: fixed;
-	bottom: 3px;
-	height: 12vh;
+    top:5px;
+    left:5px;
+	height: 90vh;
 	z-index: 20;
-	width: 100%;
+	width: 15em;
 	font-size: 1.55vh;
 	text-align: center;
 	white-space: nowrap;
@@ -61,17 +66,28 @@ div.progress[style="display: block;"] ~ #toc-progress-footer
 
 #toc-progress-footer-main
 {
-	width: 50%;
+	width: initial;
 	height: 100%;
 	float: left;
 	overflow: hidden;
 	letter-spacing: 0em;
+    transform: translate(0, 50%);
 }
 
 #toc-progress-footer-main-inside
 {
 	float: right;
-	margin-right: 2em;
+    padding-left: 0.5em;
+}
+
+#toc-progress-footer-main-inside > ul
+{
+	margin-left: 0 0 0 1.5em;
+}
+
+#toc-progress-footer-main-inside > ul > li > ul {
+    font-weight: normal;
+    margin-left: 20px;
 }
 
 /* Position and styles for the right part (subsections) of the TOC-Progress */
