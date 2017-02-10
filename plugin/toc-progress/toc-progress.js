@@ -134,6 +134,7 @@ toc_progress.create=function()
                         a_element.appendChild(document.createTextNode(title_element.textContent));
                         li_element.appendChild(a_element);
                         style_node.textContent=style_node.textContent+'.toc-progress-'+main_sections_index.toString()+' #toc-progress-'+main_sections_index.toString()+' {font-weight: bold;}\n';
+                        style_node.textContent=style_node.textContent+'.toc-progress-'+main_sections_index.toString()+' #toc-progress-'+main_sections_index.toString()+' > a {margin-left: 7px;}\n';
                         style_node.textContent=style_node.textContent+'html[class*="toc-progress-'+main_sections_index.toString()+'-"] #toc-progress-'+main_sections_index.toString()+' {font-weight: bold;}\n';
                         style_node.textContent=style_node.textContent+'html:not([class*="toc-progress-'+main_sections_index.toString()+'-"]):not([class="toc-progress-'+main_sections_index.toString()+'"]) li[id^="toc-progress-'+main_sections_index.toString()+'-"] {display: none;}\n';
                         testUl = document.createElement('ul');
@@ -157,6 +158,7 @@ toc_progress.create=function()
                         a_element.appendChild(document.createTextNode(title_element.textContent));
                         li_element.appendChild(a_element);
                         style_node.textContent=style_node.textContent+'.toc-progress-'+main_sections_index.toString()+'-'+secondary_sections_index.toString()+' #toc-progress-'+main_sections_index.toString()+'-'+secondary_sections_index.toString()+' {font-weight: bold;}\n';
+                        style_node.textContent=style_node.textContent+'.toc-progress-'+main_sections_index.toString()+'-'+secondary_sections_index.toString()+' #toc-progress-'+main_sections_index.toString()+'-'+secondary_sections_index.toString()+' > a {margin-left: 7px;}\n';
                     };
                 }
                 else if (title_element==null || (title_element.hasAttribute('class') && title_element.getAttribute('class').indexOf('no-toc-progress') > -1))
@@ -192,7 +194,7 @@ toc_progress.create=function()
                 a_element.setAttribute('href','#/'+main_sections_index.toString());
                 a_element.appendChild(document.createTextNode(title_element.textContent));
                 li_element.appendChild(a_element);
-                style_node.textContent=style_node.textContent+'.toc-progress-'+main_sections_index.toString()+' #toc-progress-'+main_sections_index.toString()+' {font-weight: bold;}\n';
+                style_node.textContent=style_node.textContent+'.toc-progress-'+main_sections_index.toString()+' #toc-progress-'+main_sections_index.toString()+' {font-weight: bold;}\n #toc-progress-'+main_sections_index.toString()+' > a {margin-left: 5px;}\n ';
                 style_node.textContent=style_node.textContent+'html[class*="toc-progress-'+main_sections_index.toString()+'-"] #toc-progress-'+main_sections_index.toString()+' {font-weight: bold;}\n';
                 style_node.textContent=style_node.textContent+'html:not([class*="toc-progress-'+main_sections_index.toString()+'-"]):not([class="toc-progress-'+main_sections_index.toString()+'"]) li[id^="toc-progress-'+main_sections_index.toString()+'-"] {display: none;}\n';
             }
