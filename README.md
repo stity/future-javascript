@@ -1,6 +1,6 @@
 # JavaScript, langage du futur ?
 
-[TOC]
+{"gitdown": "contents", "maxLevel": 4}
 
 ## Notes préalables
 Ce document écrit constitue le résultat de ma veille technologique menée dans le cadre du cours MSO 4.4.
@@ -130,6 +130,3 @@ Les reproches qui seront ici abordés sont les suivants :
 ### Typage
 
 L'absence de typage fort rend le débuggage difficile, l'autocomplétion difficile pour les environnements de développement et l'éxécution plus lente.
-
-
-
