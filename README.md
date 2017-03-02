@@ -1,15 +1,18 @@
-# JavaScript, langage du futur ?
+---
+title: JavaScript, langage du futur ?
+---
+
 
 * TOC
 {:toc}
 
-## Notes préalables
+# Notes préalables
 Ce document écrit constitue le résultat de ma veille technologique menée dans le cadre du cours MSO 4.4.
 
 Vous pouvez retrouvez les supports de la présentation orale [ici](https://stity.github.io/future-javascript/diaporama) ainsi qu'une [version pdf](https://stity.github.io/future-javascript/diaporama/presentation.pdf).
 
 
-## Objectifs
+# Objectifs
 
 A travers cette veille technologique, j'ai choisi de montrer quels sont les problèmes de ce langage et les solutions qui ont été mise en place ou qui vont l'être.
 
@@ -19,9 +22,9 @@ Ces solutions, comme nous le verrons au cours de ce document, peuvent émaner de
 
 Il est à noter que les "reproches" présentés ici sont loins d'être exhaustifs et peuvent être subjectifs. Ils ne sont pas ceux de l'auteur de cet article mais ceux qui ont souvent été lus et entendus par l'auteur.
 
-## Qu'est ce que JavaScript
+# Qu'est ce que JavaScript
 
-### Présentation
+## Présentation
 
 JavaScript est un langage interprété à typage faible et dynamique. Décomposons ensemble la signification de cette phrase qui a son importance pour la suite de l'exposé.
 
@@ -33,7 +36,7 @@ Inventé en 1987 par Tim Berners Lee, il est principalement connu pour être le 
 
 La dernière version stable de ses spécifications se nomme ECMAScript2016 et a été publié le 17 juin 2016. La version actuelle des spécification, encore en développement, est ECMAScript 2017.
 
-### Moteurs
+## Moteurs
 
 La plupart des ordinateurs, tablettes et téléphones sont équipées d'un moteur JavaScript puisqu'il suffit d'un navigateur Web. Chaque navigateur possède son propre moteur :
 
@@ -44,7 +47,7 @@ La plupart des ordinateurs, tablettes et téléphones sont équipées d'un moteu
 
 Mais il n'est pas nécessaire d'éxécuter JavaScript dans un navigateur; le framework [Node.js](https://nodejs.org) utilise le moteur V8 pour éxécuter JavaScript et permet l'éxecution de JavaScript sans navigateur. Ce framework est principalement utilisé côté serveur pour des applications Web.
 
-### Un langage polyvalent
+## Un langage polyvalent
 
 JavaScript est bien évidemment utilisé dans les pages Web mais pas seulement. On le retrouve également côté serveur avec Node.js, en application "Desktop" avec [Electron](http://electron.atom.io) (exemple d'application développée avec Electron : Bracket, le célèbre éditeur de texte orienté Web et développé par Adobe et Atom son concurrent développé par Github.)
 
@@ -83,7 +86,7 @@ JavaScript est généralement décrit comme un langage multiparadigme : il peut 
 
 Ces différents exemples démontrent la simplicité et la polyvalence de JavaScript.
 
-### Développement actif
+## Développement actif
 
 Selon [W3techs](https://w3techs.com/technologies/details/cp-javascript/all/all), près de 94% des sites Web utilisent JavaScript. Le langage est [n°1 des tendances sur GitHub de 2013](https://github.com/blog/2047-language-trends-on-github). Pour rappel, GitHub est la plateforme principale de gestion de version pour les projets et notamment pour les projets OpenSource. Plus de [390 000 packages](http://www.modulecounts.com/) sont disponibles sur [NPM](http://www.npmjs.com) (Node Packages Manager), la plateforme de gestion des modules JavaScript. Chaque jour, près de 525 nouveaux packages rejoignent en moyenne la plateforme.
 
@@ -97,14 +100,14 @@ Les langages connus par les développeurs, sondage effectué en 2016 par StackOv
 Selon [HTTPArchive](http://httparchive.org/trends.php), la quantité moyenne de code JavaScript présent sur une page web s'élève à 420Ko et ce chiffre est en augmentation.
 
 
-### Compatibilité
+## Compatibilité
 
 Le développement de JavaScript est constant. Des fonctionnalités sont sans cesse ajoutées aux spécifications. De ce fait, les moteurs peinent parfois à implémenter toutes les fonctionnalités et ils n'implémentent pas tous les mêmes.
 
 Une table de compatibilité est [disponible en ligne](http://kangax.github.io/compat-table/es6/) et recensent les fonctionnalités implémentées par les moteurs et leurs différentes versions. Ci dessous, une capture d'écran de cette table pour ES6 :
 ![table de compatibilité](kangax.png)
 
-### Polyfills
+## Polyfills
 
 Il n'existe pas de numéro de version du langage JavaScript, c'est un parti pris. Le programme doit tester si une fonction est disponible avant de pouvoir l'utiliser.
 
@@ -118,7 +121,7 @@ exemple Babel
 
 ```
 
-## Les reproches
+# Les reproches
 
 Les reproches qui seront ici abordés sont les suivants :
 
@@ -130,6 +133,6 @@ Les reproches qui seront ici abordés sont les suivants :
 - Pas de mémoire partagée
 - Lenteur
 
-### Typage
+## Typage
 
 L'absence de typage fort rend le débuggage difficile, l'autocomplétion difficile pour les environnements de développement et l'éxécution plus lente.
