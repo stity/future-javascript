@@ -1,7 +1,3 @@
----
-title: JavaScript, langage du futur ?
----
-
 
 * TOC
 {:toc}
