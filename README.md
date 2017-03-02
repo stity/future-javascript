@@ -1,6 +1,7 @@
 # JavaScript, langage du futur ?
 
-{"gitdown": "contents", "maxLevel": 4}
+* TOC
+{:toc}
 
 ## Notes préalables
 Ce document écrit constitue le résultat de ma veille technologique menée dans le cadre du cours MSO 4.4.
@@ -88,7 +89,9 @@ Selon [W3techs](https://w3techs.com/technologies/details/cp-javascript/all/all),
 
 JavaScript est le langage le plus populaire (connu par les développeurs) et le plus discuté (en terme de nombre de tags) sur [StackOverflow](http://stackoverflow.com/research/developer-survey-2016#technology).
 
-[!sondage_popularity.png]
+![popularité des langages](sondage_popularity.png)
+
+
 Les langages connus par les développeurs, sondage effectué en 2016 par StackOverflow.
 
 Selon [HTTPArchive](http://httparchive.org/trends.php), la quantité moyenne de code JavaScript présent sur une page web s'élève à 420Ko et ce chiffre est en augmentation.
@@ -99,7 +102,7 @@ Selon [HTTPArchive](http://httparchive.org/trends.php), la quantité moyenne de 
 Le développement de JavaScript est constant. Des fonctionnalités sont sans cesse ajoutées aux spécifications. De ce fait, les moteurs peinent parfois à implémenter toutes les fonctionnalités et ils n'implémentent pas tous les mêmes.
 
 Une table de compatibilité est [disponible en ligne](http://kangax.github.io/compat-table/es6/) et recensent les fonctionnalités implémentées par les moteurs et leurs différentes versions. Ci dessous, une capture d'écran de cette table pour ES6 :
-[!kangax.png]
+![table de compatibilité](kangax.png)
 
 ### Polyfills
 
