@@ -85,7 +85,14 @@ if (b*b - 4*a*c >= 0) {
 
 Ci-dessous un exempe de programmation fonctionnelle :
 ```javascript
-// exemple fonctionnel
+function square (a) {
+    return a*a;
+}
+function isEven (a) {
+    return (a % 2) == 0;
+}
+const evenSquares = [1,2,3,4,5,6].map(square).filter(isEven);
+
 ```
 
 Ci-dessous un exempe de programmation orientée objet :
@@ -191,8 +198,53 @@ Plusieurs alternatives ont été développées pour contrer ce problème de typa
  
 ### Dart
 
-```javascript
-exemple de dart
+D'après le site du langage Dart : "Dart is an application programming language that’s easy to learn, easy to scale, and deployable everywhere."
+Dart peut être utilisé dans un navigateur, en ligne de commande, sur des serveurs ou sur des mobiles.
+
+Ci dessous un exemple de code Dart qui génère une approximation de pi par la méthode de Monte-Carlo.
+
+```dart
+import 'dart:async';
+import 'dart:math' show Random;
+
+main() async {
+  print('Compute π using the Monte Carlo method.');
+  await for (var estimate in computePi()) {
+    print('π ≅ $estimate');
+  }
+}
+
+/// Generates a stream of increasingly accurate estimates of π.
+Stream<double> computePi({int batch: 1000000}) async* {
+  var total = 0;
+  var count = 0;
+  while (true) {
+    var points = generateRandom().take(batch);
+    var inside = points.where((p) => p.isInsideUnitCircle);
+    total += batch;
+    count += inside.length;
+    var ratio = count / total;
+    // Area of a circle is A = π⋅r², therefore π = A/r².
+    // So, when given random points with x ∈ <0,1>,
+    // y ∈ <0,1>, the ratio of those inside a unit circle
+    // should approach π / 4. Therefore, the value of π
+    // should be:
+    yield ratio * 4;
+  }
+}
+
+Iterable<Point> generateRandom([int seed]) sync* {
+  final random = new Random(seed);
+  while (true) {
+    yield new Point(random.nextDouble(), random.nextDouble());
+  }
+}
+
+class Point {
+  final double x, y;
+  const Point(this.x, this.y);
+  bool get isInsideUnitCircle => x * x + y * y <= 1;
+}
 ```
 
 ### TypeScript
@@ -279,4 +331,86 @@ async function foo() {
   return "whew all done";
 }
 ```
+
+## Syntaxe
+
+JavaScript possède certaines spécificités qui lui sont souvent reprochées :
+ - l'héritage par prototypage
+ - la portée des variables
+ - la pollution de l'espace principal
+
+### Classes
+
+En JavaScript, les classes obtiennent leurs méthodes via l'objet prototype :
+
+```javascript
+function MyObjectA () {}
+MyObjectA.prototype = {
+  myMethod: function () {
+    console.log("hello");
+  }
+};
+
+var obj = new MyObjectA();
+```
+
+On remarquera également l'absence du mot clé class ce qui peut être déconcertant.
+
+En copiant l'objet prototype, il est ainsi possible de créer un héritage entre classes mais cette méthode n'est pas intuitive pour ceux qui sont habitués aux langages tels que Java ou C++.
+
+Pour toutes ces raisons, ES6 introduit le sucre syntaxique de classes :
+
+```javascript
+class MyObjectC {
+  myMethod () {
+    console.log("hello");
+  }
+}
+var obj = new MyObjectC();
+```
+
+Ces deux codes sont identiquement interprétés par les moteurs récents.
+
+Chacun est ainsi libre de choisir la syntaxe qui lui plait le plus.
+
+### Portée des variables
+
+```javascript
+function fn() {
+  let foo = "bar";
+  var foo2 = "bar";
+  if (true) {
+    let foo; // pas d'erreur, foo === undefined
+    var foo2; // foo2 est en réalité écrasé !
+    foo = "qux";
+    foo2 = "qux";
+    console.log(foo); // "qux"
+    console.log(foo2); // "qux"
+  }
+  console.log(foo);// "bar"
+  console.log(foo2); // "qux"
+}
+```
+
+
+### Modules
+
+Avant les modules :
+
+```html 
+<script src="lib1.js"/> //importe la fonction render
+<script src="lib2.js"/> //importe également une fonction render ce qui écrase la première librairie silencieusement
+```
+
+Avec les modules, chaque script importe les ressources nécéssaire avec le nom voulu ce qui évite les conflits de noms et met en valeur les dépendances requises.
+
+```javascript
+const myModule = require("./my-module.js");
+```
+
+Node.js a popularisé l'utilisation des modules en JavaScript. Des librairies comme Browserify et Webpack permettent de propager l'utilisation des modules aux navigateurs.
+
+
+
+
 
