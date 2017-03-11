@@ -267,7 +267,11 @@ document.body.innerHTML = greeter.greet();
 asm.js est un sous-ensemble de JavaScript. Les variables sont annotées pour aider le compilateur.
 
 ```javascript
-exemple de asm
+function compiledCalculation() {
+    var x = f()|0;  // x is a 32-bit value
+    var y = g()|0;  // so is y
+    return (x+y)|0; // 32-bit addition, no type or overflow checks
+  }
 ```
 
 ## Callback Hell
@@ -398,19 +402,148 @@ function fn() {
 Avant les modules :
 
 ```html 
-<script src="lib1.js"/> //importe la fonction render
-<script src="lib2.js"/> //importe également une fonction render ce qui écrase la première librairie silencieusement
+<script src="lib1.js"></scrip> <!--importe la fonction render -->
+<script src="lib2.js"></script> <!--importe également une fonction render ce qui écrase la première librairie silencieusement-->
 ```
 
 Avec les modules, chaque script importe les ressources nécéssaire avec le nom voulu ce qui évite les conflits de noms et met en valeur les dépendances requises.
 
+Syntaxe Node.js et Browserify :
 ```javascript
 const myModule = require("./my-module.js");
+```
+
+Syntaxe Webpack :
+```javascript
+import bar from './bar';
 ```
 
 Node.js a popularisé l'utilisation des modules en JavaScript. Des librairies comme Browserify et Webpack permettent de propager l'utilisation des modules aux navigateurs.
 
 
+## Parallélisme
+
+JavaScript est généralement décrit comme un langage single threaded. Mais cette affirmation est de moins en moins vrai comme nous allons le voir avec la démocratisation des Web Workers, l'utilisation du GPU comme unité de calcul, et les évolutions à venir en termes de mémoire partagée.
+
+### Web Worker
+
+Un Web Worker est un programme s'éxécutant en parallèle dans un environnement indépendant. La communication et le thread principal se fait par un système de messages. Les données sont envoyées par copies ou "transférées".
+
+La copie de données peut s'avérer couteuse en temps si la taille des données est importante.
+
+Le transfert d'une variable est instantanné mais lorsqu'une variable est transférée elle n'est plus disponible dans le thread principal. Elle est emprunté.
 
 
+### GPU
 
+Il existe plusieurs manière de mettre à profit le GPU depuis JavaScript.
+La plus connue consiste à employer WebGL pour des calculs graphiques. Il est cependant possible d'employer cette unité dédié au parallélisme pour des calculs plus "traditionnels" en codant directement des shaders ou via des librairies intermédiaires spécialisées comme [Turbo.js](https://turbo.github.io/)
+
+Ci-dessous, un exemple de mis en oeuvre de Turbo.js.
+```javascript
+// Test if turbo.js is available 
+if (turbojs) { 
+  // Allocate a float-array of size 1,000,000 
+  var blah = turbojs.alloc(1e6); 
+  
+  // Initialize data 
+  for (i = 0; i <= 1e6; i++) blah.data[i] = i; 
+  
+  // [0, 1, 2, 3, 4] 
+  console.log(blah.data.subarray(0, 5)); 
+  
+  // A simple kernel that calculates input *= 4 
+  // for all 1e6 floats in parallel 
+  turbojs.run(blah, `void main(void) { 
+    commit(read() * 4.); 
+  }`); 
+  
+  // [0, 4, 8, 12, 16] 
+  console.log(blah.data.subarray(0, 5)); 
+   
+  // That's it :-) 
+} 
+
+```
+
+### SharedArrayBuffer
+
+L'implémentation récente des SharedArrayBuffer signe l'apparition de la mémoire partagée entre Web Workers.
+
+
+```javascript
+   // main.js
+
+    const worker = new Worker('worker.js');
+
+    // To be shared
+    const sharedBuffer = new SharedArrayBuffer( // (A)
+        10 * Int32Array.BYTES_PER_ELEMENT); // 10 elements
+
+    // Share sharedBuffer with the worker
+    worker.postMessage({sharedBuffer}); // clone
+
+    // Local only
+    const sharedArray = new Int32Array(sharedBuffer); // (B)
+```
+
+Pour cette fonctionalité est à l'essai dans les dernières versions des navigateurs majeurs et elle doit être activé via l'utilisation de flags.
+
+### Atomics
+
+Pour éviter les problèmes d'accès concurrents en lecture ou en écriture avec les SharedArrayBuffer, les Atomics ont été créés.
+Il s'agit d'opérations atomiques qui s'assurent que des valeurs correctes sont écrites et lues, que les opérations sont finies avant que la suivante commence et que les opérations ne sont pas interrompues.
+
+```javascript
+// Initialization before sharing the Array
+    Atomics.store(sharedArray, 0, 1);
+
+    // main.js
+    Atomics.store(sharedArray, 0, 2);
+
+    // worker.js
+    while (Atomics.load(sharedArray, 0) === 1) ;
+    console.log(Atomics.load(sharedArray, 0)); // 2
+```
+
+### Performances des Web Workers
+
+
+D'après l'article [ES proposal: Shared memory and atomics](http://www.2ality.com/2017/01/shared-array-buffer.html), les gains de performances sont linéaires avec le nombre de web worker jusqu'à 4 workers avec l'algorithme testé. Au delà les performances s'améliorent plus modestement.
+
+## Optimisation et vitesse
+
+A cause de sa nature, JavaScript peut s'avérer lent à l'éxécution. Même si l'utilisation des compilateurs Just In Time [^1] a permis un énorme gain de performance, il y a encore matière à mieux.
+Pour cela, le code doit être plus proche du code éxécuté par la machine.
+
+### asm.js
+
+asm.js est un sous ensemble très restraint de JavaScript. Il ne contient notamment pas d'objets. L'anotation des variables permet d'éviter le typage dynamique ce qui permet in fine de réaliser des optimisations de bas niveau.
+La compilation d'asm.js s'approche donc plus d'une compilation Ahead-Of-Time que d'une compilation Just-In-Time.
+
+Il est ainsi possible de convertir du code C++ en asm.js, notamment grâce à [EMScripten](http://kripken.github.io/emscripten-site/)
+```javascript
+function compiledCalculation() {
+    var x = f()|0;  // x is a 32-bit value
+    var y = g()|0;  // so is y
+    return (x+y)|0; // 32-bit addition, no type or overflow checks
+  }
+```
+
+![Benchmark asm.js](benchmarkasm.png)
+
+Comme on peut le voir sur le graphique ci-dessus, l'utilisation d'asm.js permet d'avoir des performances à peine deux fois moins bonnes qu'avec un langage comme C++.
+
+### Web Assembly
+
+Web Assembly est l'équivalent binaire d'asm.js. Le taille du code est ainsi réduite ce qui diminue le temps de chargement et le temps de parsing.
+
+Le JavaScript exécuté de manière classique partage le même espace sémantique que Web Assembly pour permettre les appels entre ces deux technologies. Cela est notamment nécessaire pour pouvoir accéder au DOM, en effet il n'est pas possible d'accéder au DOM depuis Web Assembly.
+
+En termes de performances, Web Assembly affiche un temps de parsing jusqu'à 20 fois meilleur et un temps de chargement 1,5 à 3 fois meilleur.
+
+# Conclusion
+
+JavaScript des avantages incontestables : déjà son omniprésence aussi bien pour le développement web, le développement d'applications mobies et serveurs, puis sa simplicité d'apprentissage et enfin son évolution très rapide menée par une communauté nombreuse et motivée qui permet de s'adapter aux exigences toujours plus accrues de l'industrie et du public en terme de performance et de fonctionnalités.
+
+Tous ces avantages en font indéniablement un langage d'avenir.
