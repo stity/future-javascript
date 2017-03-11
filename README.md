@@ -44,6 +44,7 @@ La plupart des ordinateurs, tablettes et téléphones sont équipées d'un moteu
 - JavaScript Core pour Safari
 
 Mais il n'est pas nécessaire d'éxécuter JavaScript dans un navigateur; le framework [Node.js](https://nodejs.org) utilise le moteur V8 pour éxécuter JavaScript et permet l'éxecution de JavaScript sans navigateur. Ce framework est principalement utilisé côté serveur pour des applications Web.
+A noter que des grands acteurs du Web l'ont déjà adopté, on pourra citer [parmis eux Wikipédia](https://blog.wikimedia.org/2017/02/17/node-6-wikimedia/).
 
 ## Un langage polyvalent
 
@@ -379,6 +380,8 @@ Chacun est ainsi libre de choisir la syntaxe qui lui plait le plus.
 
 ### Portée des variables
 
+La portée des variables en JavaScript en a déconcerté plus d'un mais l'introduction des mots clés const et let permet de rétablir les règles communément admises.
+
 ```javascript
 function fn() {
   let foo = "bar";
@@ -402,7 +405,7 @@ function fn() {
 Avant les modules :
 
 ```html 
-<script src="lib1.js"></scrip> <!--importe la fonction render -->
+<script src="lib1.js"></script> <!--importe la fonction render -->
 <script src="lib2.js"></script> <!--importe également une fonction render ce qui écrase la première librairie silencieusement-->
 ```
 
@@ -536,6 +539,8 @@ Comme on peut le voir sur le graphique ci-dessus, l'utilisation d'asm.js permet 
 
 ### Web Assembly
 
+![Logo WASM](logo_wasm.png)
+
 Web Assembly est l'équivalent binaire d'asm.js. Le taille du code est ainsi réduite ce qui diminue le temps de chargement et le temps de parsing.
 
 Le JavaScript exécuté de manière classique partage le même espace sémantique que Web Assembly pour permettre les appels entre ces deux technologies. Cela est notamment nécessaire pour pouvoir accéder au DOM, en effet il n'est pas possible d'accéder au DOM depuis Web Assembly.
@@ -547,3 +552,23 @@ En termes de performances, Web Assembly affiche un temps de parsing jusqu'à 20 
 JavaScript des avantages incontestables : déjà son omniprésence aussi bien pour le développement web, le développement d'applications mobies et serveurs, puis sa simplicité d'apprentissage et enfin son évolution très rapide menée par une communauté nombreuse et motivée qui permet de s'adapter aux exigences toujours plus accrues de l'industrie et du public en terme de performance et de fonctionnalités.
 
 Tous ces avantages en font indéniablement un langage d'avenir.
+
+
+# Références
+
+[WebAssembly: Under the hood with Mozilla](https://www.youtube.com/watch?v=o52_5qAJhNg)
+[Hello World: Concurrency In Node.js Using The Cluster Module](https://www.bennadel.com/blog/3234-hello-world-concurrency-in-node-js-using-the-cluster-module.htm#blog-post)
+[WebAssembly consensus and end of Browser Preview](https://lists.w3.org/Archives/Public/public-webassembly/2017Feb/0002.html)
+[A cartoon intro to WebAssembly](https://hacks.mozilla.org/2017/02/a-cartoon-intro-to-webassembly/)
+[What You Should Know About ES6 Maps](https://hackernoon.com/what-you-should-know-about-es6-maps-dc66af6b9a1e)
+[Node 6 at Wikimedia: Stability and substantial memory savings](https://blog.wikimedia.org/2017/02/17/node-6-wikimedia/)
+[Won WebAssembly logo contest](https://medium.com/@carlosbaraza/won-webassembly-logo-contest-7dc4623f5cf#.lfquv93sh)
+[ECMAScript 2016+ in Firefox](https://blog.mozilla.org/javascript/2017/02/22/ecmascript-2016plus-in-firefox/)
+[JavaScript’s Journey through 2016](http://developer.telerik.com/topics/web-development/javascripts-journey-2016/)
+[WebAssembly Will Ease Collaboration on Next Generation Video Codecs](https://hacks.mozilla.org/2017/02/webassembly-will-ease-collaboration-on-next-generation-video-codecs/)
+[A first look at WebAssembly performance](http://www.stefankrause.net/wp/?p=405)
+[Node.js Async Best Practices & Avoiding Callback Hell - Node.js at Scale](https://blog.risingstack.com/node-js-async-best-practices-avoiding-callback-hell-node-js-at-scale/)
+[ES proposal: Shared memory and atomics](http://www.2ality.com/2017/01/shared-array-buffer.html)
+[Safari 10.1](https://developer.apple.com/library/prerelease/content/releasenotes/General/WhatsNewInSafari/Articles/Safari_10_1.html)
+[2016 JavaScript Rising Stars](https://risingstars2016.js.org/)
+[Microsoft's ChakraCore adds WebAssembly support](http://www.infoworld.com/article/3153211/javascript/microsofts-chakracore-adds-webassembly-support.html#tk.twt_ifw)
