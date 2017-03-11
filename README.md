@@ -556,6 +556,7 @@ Tous ces avantages en font indéniablement un langage d'avenir.
 
 # Références
 
+ - [JavaScript reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
  - [WebAssembly: Under the hood with Mozilla](https://www.youtube.com/watch?v=o52_5qAJhNg)
  - [Hello World: Concurrency In Node.js Using The Cluster Module](https://www.bennadel.com/blog/3234-hello-world-concurrency-in-node-js-using-the-cluster-module.htm#blog-post)
  - [WebAssembly consensus and end of Browser Preview](https://lists.w3.org/Archives/Public/public-webassembly/2017Feb/0002.html)
