@@ -7,6 +7,10 @@ Ce document écrit constitue le résultat de ma veille technologique menée dans
 
 Vous pouvez retrouvez les supports de la présentation orale [ici](https://stity.github.io/future-javascript/diaporama) ainsi qu'une [version pdf](https://stity.github.io/future-javascript/diaporama/presentation.pdf).
 
+La présentation est réalisée avec la librairie reveal.js.
+
+Retrouvez mon compte [twitter](https://twitter.com/ValentinDemeusy) sur lequel j'ai partagé des liens en rapport avec ce sujet.
+
 
 # Objectifs
 
