@@ -32,7 +32,7 @@ JavaScript est un langage interprété à typage faible et dynamique. Décomposo
 - Typage faible : le type d'une variable peut changer au cours de l'éxécution.
 - Typage dynamique : le type d'une variable est déterminé au moment de l'attribution de sa valeur à la variable.
 
-Inventé en 1987 par Tim Berners Lee, il est principalement connu pour être le langage du Web.
+Inventé en 1985 par Brendan Eich, il est principalement connu pour être le langage du Web.
 
 La dernière version stable de ses spécifications se nomme ECMAScript2016 et a été publié le 17 juin 2016. La version actuelle des spécification, encore en développement, est ECMAScript 2017.
 
